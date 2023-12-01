@@ -1,4 +1,3 @@
-
 def main():
     lines = get_input_str("input.txt")
     numbers = []
@@ -22,3 +21,5 @@ def get_input_str(filename):
             lines.append(line)
     f.close()
     return lines
+
+print(main())
