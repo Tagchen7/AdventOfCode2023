@@ -13,13 +13,12 @@ def get_first_num(line):
     return None
 
 def get_input_str(filename):
-    with open(filename) as f:
-        line = True
+    # open file in readmode
+    with open(filename, "r") as file:
         lines = []
-        while line:
-            line = f.readline()
+        for line in file:
             lines.append(line)
-    f.close()
+    file.close()
     return lines
 
 print(main())
