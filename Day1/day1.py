@@ -6,10 +6,17 @@ DIGITS = {"one":"1", "two":"2", "three":"3", "four":"4", "five":"5", "six":"6", 
 def main(option=1):
     lines = get_input_str("input.txt")
     numbers = []
+    i = 0
+    j = 6
     for line in lines:
         if option == 2:
             line = add_letter(line)
+            if i == j:
+                print("changed line 1: ", line)
+                print("original line 1: ", lines[i])
+            i +=1
         numbers.append(int("".join([get_first_num(line), get_first_num(line[::-1])])))
+    print("first 20 values: ", numbers[j])
     return sum(numbers)
 
 def add_letter(line):
@@ -18,6 +25,7 @@ def add_letter(line):
     first = ""
     idx_last = -1
     last = ""
+    length_last = 0
     
     """
     for key, value in NUMBERS.items():
@@ -35,13 +43,17 @@ def add_letter(line):
         if idx_first == -1 or (i != -1 and i < idx_first):
             idx_first = i
             first = value
+    if idx_first != -1:
+        line = "".join([line[:idx_first], first, line[idx_first:]])
+
+    for key, value in DIGITS.items():
         j = line.rfind(key)
-        if i > idx_last:
+        if j > idx_last:
             idx_last = j
+            length_last = len(key)
             last = value
-            
-    line = "".join([line[:idx_first], first, line[idx_first:]])
-    line = "".join([line[:idx_last], last, line[idx_last:]])
+    if idx_last != -1:
+        line = "".join([line[:idx_last+length_last], last, line[idx_last+length_last:]])
     return line
 
 def get_first_num(line):
