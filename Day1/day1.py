@@ -56,10 +56,6 @@ def get_input_str(file_name):
     file_path = os.path.join(script_dir, file_name)
     # open file in readmode
     with open(file_path, "r") as file:
-        lines = []
-        for line in file:
-            lines.append(line)
-    file.close()
-    return lines
+        return [x.strip() for x in file]
 
 print("part 1: ", main(1), "\npart 2: ", main(2))
