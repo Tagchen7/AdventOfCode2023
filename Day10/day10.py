@@ -25,8 +25,9 @@ def main(option):
         is_in_loop = False
         prev = Field()
         for x in range(len(input[0])):
-            if board.fields[(x, y)] not in loop and is_in_loop:
-                cnt += 1
+            if board.fields[(x, y)] not in loop:
+                if is_in_loop:
+                    cnt += 1
             elif prev not in board.fields[(x, y)].connected:
                 is_in_loop = not is_in_loop
             prev = board.fields[(x, y)]
